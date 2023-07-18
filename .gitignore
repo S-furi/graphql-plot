@@ -1,5 +1,27 @@
-# Ignore Gradle project-specific cache directory
+# Gradle
+build/
+bin/
 .gradle
+gradle.prefs
+gradle.xml
 
-# Ignore Gradle build output directory
-build
+# Idea
+out/
+uiDesigner.xml
+buildProfile/
+*.iml
+.idea/artifacts/
+.idea/libraries/
+.idea/workspace.xml
+.idea/codeStyleSettings.xml
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/jarRepositories.xml
+.idea/dataSources.local.xml
+.idea/libraries-with-intellij-classes.xml
+.idea/runConfigurations.xml
+.idea/shelf
+.idea/checkstyle-idea.xml
+/.idea/kotlinc.xml
+
+# MacOS
+.DS_Store
