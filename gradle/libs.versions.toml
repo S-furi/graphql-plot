@@ -1,0 +1,38 @@
+[versions]
+kotlin_version = "1.8.22"
+logback_version="1.4.8"
+ktor_version="2.3.2"
+expediagroup_graphql_version = "6.5.3"
+expediagroup_graphql_ktor_version = "7.0.0-alpha.6"
+apollographql_version = "4.0.0-alpha.2"
+junit_version = "5.8.1"
+
+[libraries]
+logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback_version"}
+
+# Junit
+kotlin-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin_version" }
+junit  = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit_version" }
+
+# Ktor
+ktor-server-core = { module = "io.ktor:ktor-server-core-jvm", version.ref = "ktor_version" }
+ktor-server-netty = { module = "io.ktor:ktor-server-netty-jvm", version.ref = "ktor_version" }
+ktor-server-websockets = { module = "io.ktor:ktor-server-websockets-jvm", version.ref = "ktor_version" }
+ktor-server-cors = { module = "io.ktor:ktor-server-cors-jvm", version.ref = "ktor_version" }
+ktor-serialization-jackson = { module = "io.ktor:ktor-serialization-jackson", version.ref = "ktor_version" }
+
+# Apollo and OkHttp Interceptor
+apollo-runtime = { module = "com.apollographql.apollo3:apollo-runtime", version.ref = "apollographql_version" }
+okhttp-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version = "4.11.0" }
+
+# GraphQL Server modules
+graphql-kotlin-server = { module = "com.expediagroup:graphql-kotlin-server", version.ref = "expediagroup_graphql_version" }
+graphql-kotlin-ktor-server = { module = "com.expediagroup:graphql-kotlin-ktor-server", version.ref = "expediagroup_graphql_ktor_version" }
+
+
+[plugins]
+kotlinJvmPlugin = { id = 'org.jetbrains.kotlin.jvm', version.ref =  "kotlin_version" }
+kotlinSerializationPlugin = { id = "org.jetbrains.kotlin.plugin.serialization", version = "kotlin_version" }
+apollographqlPlugin = { id = "com.apollographql.apollo3", version.ref = "apollographql_version" }
+ktorPlugin = { id = "io.ktor.plugin", version.ref = "ktor_version" }
+graphqlServerPlugin = { id = "com.expediagroup.graphql", version.ref = "expediagroup_graphql_version" }
