@@ -9,6 +9,8 @@ repositories {
 
 dependencies { 
     implementation(libs.logback)
+    implementation(libs.apollo.runtime)
+    implementation(libs.okhttp.interceptor)
 }
 
 // TODO: Activate once server is ready, up and running
