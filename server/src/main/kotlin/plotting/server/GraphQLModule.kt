@@ -28,7 +28,7 @@ fun Application.graphQLModule() {
 
     install(GraphQL) {
         schema {
-            packages = listOf("ploting.server")
+            packages = listOf("plotting.server")
             queries = emptyList()
             mutations = emptyList()
             subscriptions = emptyList()
