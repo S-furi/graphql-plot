@@ -70,7 +70,7 @@ kotlin {
 }
 
 application {
-    mainClass.set("me.stefanofuri.application.server.GraphQLServerApplicationKt")
+    mainClass.set("me.stefanofuri.application.GraphQLServerApplicationKt")
 }
 
 tasks.named<Copy>("jvmProcessResources") {
