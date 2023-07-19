@@ -1,0 +1,6 @@
+subscription Points($limit: Int) {
+    randomPoints(limit: $limit) {
+        x
+        y
+    }
+}
