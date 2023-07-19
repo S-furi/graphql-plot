@@ -7,7 +7,7 @@ plugins {
 }
 
 application {
-    mainClass.set("plotting.server.GraphQLServerApplicationKt")
+    mainClass.set("plotting.server.GraphQlServerApplicationKt")
 }
 
 repositories { mavenCentral() }
