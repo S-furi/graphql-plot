@@ -15,6 +15,8 @@ import io.ktor.server.application.install
 import io.ktor.server.plugins.cors.routing.CORS
 import io.ktor.server.routing.Routing
 import io.ktor.server.websocket.WebSockets
+import me.stefanofuri.application.server.schema.queries.TestQuery
+import me.stefanofuri.application.server.schema.subscriptions.PointSubscription
 
 fun Application.graphQLModule() {
     install(WebSockets) {
@@ -29,9 +31,9 @@ fun Application.graphQLModule() {
     install(GraphQL) {
         schema {
             packages = listOf("me.stefanofuri.application.server")
-            queries = emptyList()
+            queries = listOf(TestQuery())
             mutations = emptyList()
-            subscriptions = emptyList()
+            subscriptions = listOf(PointSubscription())
             hooks = FlowSubscriptionSchemaGeneratorHooks()
         }
         engine {
