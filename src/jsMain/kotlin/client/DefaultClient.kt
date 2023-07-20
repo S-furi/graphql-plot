@@ -1,4 +1,4 @@
-package me.stefanofuri.application.client
+package client
 
 import com.apollographql.apollo3.ApolloCall
 import com.apollographql.apollo3.ApolloClient
@@ -7,19 +7,25 @@ import com.apollographql.apollo3.api.Query
 import com.apollographql.apollo3.api.Subscription
 import com.apollographql.apollo3.network.ws.GraphQLWsProtocol
 import com.apollographql.apollo3.network.ws.WebSocketNetworkTransport
-import java.lang.IllegalStateException
 
-class GraphQLClient(private val client: ApolloClient) : Client {
+import com.apollographql.apollo3.ApolloCall
+import com.apollographql.apollo3.ApolloClient
+import com.apollographql.apollo3.api.Mutation
+import com.apollographql.apollo3.api.Query
+import com.apollographql.apollo3.api.Subscription
+import com.apollographql.apollo3.network.ws.GraphQLWsProtocol
+import com.apollographql.apollo3.network.ws.WebSocketNetworkTransport
 
+class DefaultClient(private val client: ApolloClient) : GraphQLClient {
     private var isBuilt: Boolean = false
     private var isSubscriptionModuleEnabled = false
 
-    private constructor(builder: ClientBuilder) : this(builder.build()) {
+    private constructor(builder: DefaultClientBuilder) : this(builder.build()) {
         isBuilt = true
         isSubscriptionModuleEnabled = builder.isSubscriptionModuleEnabled
     }
 
-    override fun builder(): ClientBuilder = GraphQLClientBuilder()
+    override fun builder(): GraphQLClientBuilder = DefaultClientBuilder()
 
     override fun <D : Query.Data> query(query: Query<D>): ApolloCall<D> {
         checkBuilt()
@@ -39,19 +45,19 @@ class GraphQLClient(private val client: ApolloClient) : Client {
 
     private fun checkBuilt() = if (!isBuilt) throw ClientNotBuiltException() else true
 
-    private class GraphQLClientBuilder : ClientBuilder {
+    private class DefaultClientBuilder : GraphQLClientBuilder {
         private var url: String? = null
 
         var isBuilt: Boolean = false
         override var isSubscriptionModuleEnabled: Boolean = false
         val apolloClientBuilder = ApolloClient.Builder()
 
-        override fun serverUrl(host: String, port: Int): ClientBuilder = apply {
+        override fun serverUrl(host: String, port: Int): DefaultClientBuilder = apply {
             url = "$host:$port"
             apolloClientBuilder.serverUrl("http://$url/graphql")
         }
 
-        override fun addSubscriptionModule(): ClientBuilder = apply {
+        override fun addSubscriptionModule(): DefaultClientBuilder = apply {
             if (url == null) {
                 throw IllegalStateException("You must provide a url before setting up subscription module")
             }
@@ -70,6 +76,7 @@ class GraphQLClient(private val client: ApolloClient) : Client {
             isBuilt = true
             return apolloClientBuilder.build()
         }
+
     }
 }
 

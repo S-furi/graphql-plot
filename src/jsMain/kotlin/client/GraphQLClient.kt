@@ -1,4 +1,4 @@
-package me.stefanofuri.application.client
+package client
 
 import com.apollographql.apollo3.ApolloCall
 import com.apollographql.apollo3.ApolloClient
@@ -6,8 +6,8 @@ import com.apollographql.apollo3.api.Query
 import com.apollographql.apollo3.api.Mutation
 import com.apollographql.apollo3.api.Subscription
 
-interface Client {
-    fun builder(): ClientBuilder
+interface GraphQLClient {
+    fun builder(): GraphQLClientBuilder
 
     /*
     * Wrapper around ApolloClient query command for execute queries.
@@ -29,12 +29,12 @@ interface Client {
  *
  * Builds the Apollo GraphQL client with the specified features.
  */
-interface ClientBuilder {
+interface GraphQLClientBuilder {
     var isSubscriptionModuleEnabled: Boolean
     /*
     * Sets the server URL, if nothing is specified, default values will apply for local host.
     */
-    fun serverUrl(host: String = "localhost", port: Int = 8080): ClientBuilder
+    fun serverUrl(host: String = "localhost", port: Int = 8080): GraphQLClientBuilder
 
     /**
      *
@@ -45,7 +45,7 @@ interface ClientBuilder {
      * this implementation, we explicitly specify the correct version that is now being the HTTP
      * standard.
      */
-    fun addSubscriptionModule(): ClientBuilder
+    fun addSubscriptionModule(): GraphQLClientBuilder
 
     /*
     * Get the built client.
