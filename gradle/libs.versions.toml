@@ -1,5 +1,5 @@
 [versions]
-kotlin_version = "1.8.22"
+kotlin_version = "1.9.0"
 logback_version="1.4.8"
 ktor_version="2.3.2"
 expediagroup_graphql_version = "6.5.3"
