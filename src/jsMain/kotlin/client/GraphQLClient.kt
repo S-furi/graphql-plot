@@ -1,7 +1,6 @@
 package client
 
 import com.apollographql.apollo3.ApolloCall
-import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.api.Query
 import com.apollographql.apollo3.api.Mutation
 import com.apollographql.apollo3.api.Subscription
@@ -50,5 +49,5 @@ interface GraphQLClientBuilder {
     /*
     * Get the built client.
     */
-    fun build(): ApolloClient
+    fun build(): GraphQLClient
 }

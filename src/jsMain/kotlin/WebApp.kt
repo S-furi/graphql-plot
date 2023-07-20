@@ -4,12 +4,6 @@ import kotlinx.coroutines.MainScope
 import org.jetbrains.letsPlot.Stat
 import org.jetbrains.letsPlot.frontend.JsFrontendUtil
 
-import kotlin.random.Random
-import kotlin.math.sqrt
-import kotlin.math.PI
-import kotlin.math.ln
-import kotlin.math.cos
-
 import org.jetbrains.letsPlot.geom.geomDensity
 import org.jetbrains.letsPlot.letsPlot
 
@@ -19,25 +13,34 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import kotlinx.dom.clear
 
+import client.*
+import com.apollographql.apollo3.ApolloClient
+import com.apollographql.apollo3.api.ApolloResponse
+import com.apollographql.apollo3.api.Optional
+import com.apollographql.apollo3.api.Query
+import jsMain.client.PointsSubscription
+import jsMain.client.TestQuery
+
 fun main() {
     window.onload = { createContext() }
 }
 
 fun createContext() {
     val data = mapOf(
-        "x" to mutableListOf<Double>(),
+        "x" to mutableListOf<Int>(),
         "y" to mutableListOf()
     )
 
-    var t = 0.0
+    var t = 0
 
     MainScope().launch {
         getData()
             .onEach {
                 data["x"]?.add(t)
-                data["y"]?.add(it)
+                it.data?.randomPoints?.let { it1 -> data["y"]?.add(it1.x) }
+
                 addPlotToDiv(getPlot(data))
-                t += 1.0
+                t += 1
             }.collect()
     }
 }
@@ -51,17 +54,7 @@ fun addPlotToDiv(p: Figure) {
 fun getPlot(data: Map<String, Any>, xx: String = "x", yy: String = "y") =
     letsPlot(data) + geomDensity(stat = Stat.identity) { x = xx ; y = yy}
 
-fun getData(): Flow<Double> = flow {
-    while(true) {
-        emit(nextGaussian())
-        delay(200)
-    }
-}
-
-fun nextGaussian(): Double {
-    var u = 0.0
-    var v = 0.0
-    while (u < 1.0e-7) u = Random.nextDouble()
-    while (v < 1.0e-7) v = Random.nextDouble()
-    return sqrt(-2.0 * ln(u)) * cos(2.0 * PI * v)
+fun getData(): Flow<ApolloResponse<PointsSubscription.Data>> {
+    val apolloClient = ApolloClient.Builder().serverUrl("http://localhost:8080/graphql").build()
+    return apolloClient.subscription(PointsSubscription(Optional.present(10))).toFlow()
 }
