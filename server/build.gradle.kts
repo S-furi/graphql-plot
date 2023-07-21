@@ -41,9 +41,3 @@ kotlin {
         }
     }
 }
-
-//graphql {
-//    schema {
-//        packages = listOf("gql.plt.server.components.GraphQLModuleKt.graphQLModule")
-//    }
-//}
