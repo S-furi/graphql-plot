@@ -1,6 +1,5 @@
 package gql.plt.app
 
-import com.apollographql.apollo3.api.ApolloResponse
 import com.apollographql.apollo3.api.Optional
 import gql.plt.app.client.DefaultClient
 import jsMain.client.PointsSubscription
