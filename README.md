@@ -11,6 +11,11 @@ You can also run the server through a docker container (so docker **must be inst
 ```bash
 ./gradlew :server:runDocker
 ```
+Once the server is started, download the schema with the following Gradle task:
+```bash
+./gradlew :js-app:downloadApolloSchema --endpoint='http://localhost:8080/graphql' \
+--schema=./js-app/src/jsMain/resources/graphql/schema.graphqls
+```
 
 Then you can test out the web application using the GrapQL client with:
 ```bash
