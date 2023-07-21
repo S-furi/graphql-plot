@@ -5,12 +5,12 @@ A Kotlin GraphQL Client/Server architecture using Lets-Plot inside a Kotlin Mult
 
 You can run the server through a docker container (so docker **must be installed** on the system) running:
 ```bash
-./gradlew runDocker
+./gradlew :server:runDocker
 ```
 
 Then you can test out the web application using the GrapQL client with:
 ```bash
-./gradlew jsBrowserRun
+./gradlew :js-app:jsBrowserRun
 ```
 
 ## Notes
