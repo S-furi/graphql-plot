@@ -1,3 +1,5 @@
+package gql.plt.app
+
 import kotlinx.browser.document
 import kotlinx.browser.window
 import kotlinx.coroutines.MainScope
@@ -13,13 +15,10 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import kotlinx.dom.clear
 
-import client.*
-import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.api.ApolloResponse
 import com.apollographql.apollo3.api.Optional
-import com.apollographql.apollo3.api.Query
+import gql.plt.app.client.DefaultClient
 import jsMain.client.PointsSubscription
-import jsMain.client.TestQuery
 
 fun main() {
     window.onload = { createContext() }

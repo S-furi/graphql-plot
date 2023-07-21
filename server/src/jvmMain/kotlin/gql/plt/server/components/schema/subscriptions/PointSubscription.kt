@@ -1,8 +1,8 @@
-package me.stefanofuri.application.server.schema.subscriptions
+package gql.plt.server.components.schema.subscriptions
 
 import com.expediagroup.graphql.generator.annotations.GraphQLDescription
 import com.expediagroup.graphql.server.operations.Subscription
-import me.stefanofuri.application.server.schema.models.Point
+import gql.plt.server.components.schema.models.Point
 import kotlin.random.Random
 
 import kotlinx.coroutines.flow.flow
