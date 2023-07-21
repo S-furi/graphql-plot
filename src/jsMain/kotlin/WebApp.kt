@@ -39,6 +39,8 @@ fun createContext() {
                 data["x"]?.add(t)
                 it.data?.randomPoints?.let { it1 -> data["y"]?.add(it1.x) }
 
+                println(it.data)
+
                 addPlotToDiv(getPlot(data))
                 t += 1
             }.collect()
@@ -55,6 +57,6 @@ fun getPlot(data: Map<String, Any>, xx: String = "x", yy: String = "y") =
     letsPlot(data) + geomDensity(stat = Stat.identity) { x = xx ; y = yy}
 
 fun getData(): Flow<ApolloResponse<PointsSubscription.Data>> {
-    val apolloClient = ApolloClient.Builder().serverUrl("http://localhost:8080/graphql").build()
+    val apolloClient = DefaultClient.Builder().serverUrl().addSubscriptionModule().build()
     return apolloClient.subscription(PointsSubscription(Optional.present(10))).toFlow()
 }
