@@ -10,7 +10,7 @@ You can run the server through a docker container (so docker **must be installed
 
 Then you can test out the web application using the GrapQL client with:
 ```bash
-./gradlew runJs
+./gradlew jsBrowserRun
 ```
 
 ## Notes
