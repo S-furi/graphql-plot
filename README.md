@@ -21,3 +21,7 @@ Then you can test out the web application using the GrapQL client with:
 ```bash
 ./gradlew :js-app:jsBrowserRun
 ```
+
+If you're making changes to the client application, it could become handy the 
+`--continuous` flag when running `:js-app:jsBrowserRun` task, wich let's you
+recompile and run automatically the web application when you save.
