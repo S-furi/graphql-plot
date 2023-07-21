@@ -1,3 +1,3 @@
-package me.stefanofuri.application
+package gql.plt.server
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)

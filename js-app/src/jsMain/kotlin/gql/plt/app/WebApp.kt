@@ -1,3 +1,5 @@
+package gql.plt.app
+
 import kotlinx.browser.document
 import kotlinx.browser.window
 import kotlinx.coroutines.MainScope
@@ -13,13 +15,11 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import kotlinx.dom.clear
 
-import client.*
-import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.api.ApolloResponse
 import com.apollographql.apollo3.api.Optional
-import com.apollographql.apollo3.api.Query
+import gql.plt.app.client.DefaultClient
 import jsMain.client.PointsSubscription
-import jsMain.client.TestQuery
+import org.jetbrains.letsPlot.geom.geomPoint
 
 fun main() {
     window.onload = { createContext() }
@@ -31,18 +31,14 @@ fun createContext() {
         "y" to mutableListOf()
     )
 
-    var t = 0
-
     MainScope().launch {
         getData()
             .onEach {
-                data["x"]?.add(t)
-                it.data?.randomPoints?.let { it1 -> data["y"]?.add(it1.x) }
-
-                println(it.data)
+                it.data?.randomPoints?.let { point ->
+                    data["x"]?.add(point.x) ; data["y"]?.add(point.y)
+                }
 
                 addPlotToDiv(getPlot(data))
-                t += 1
             }.collect()
     }
 }
@@ -54,7 +50,8 @@ fun addPlotToDiv(p: Figure) {
 }
 
 fun getPlot(data: Map<String, Any>, xx: String = "x", yy: String = "y") =
-    letsPlot(data) + geomDensity(stat = Stat.identity) { x = xx ; y = yy}
+    letsPlot(data) { x = xx ; y = yy } +
+            geomPoint(color = "red", size = 3.0)
 
 fun getData(): Flow<ApolloResponse<PointsSubscription.Data>> {
     val apolloClient = DefaultClient.Builder().serverUrl().addSubscriptionModule().build()

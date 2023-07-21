@@ -1,4 +1,4 @@
-package me.stefanofuri.application.server.schema.queries
+package gql.plt.server.components.schema.queries
 
 import com.expediagroup.graphql.server.operations.Query
 

@@ -43,6 +43,7 @@ letsplot-js = { module = "org.jetbrains.lets-plot:lets-plot-kotlin-js", version.
 [plugins]
 kotlinJvmPlugin = { id = "org.jetbrains.kotlin.jvm", version.ref =  "kotlin_version" }
 kotlinJsPlugin = { id = "org.jetbrains.kotlin.js", version.ref = "kotlin_version"}
+kotlinMultiplatformPlugin = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin_version"}
 kotlinSerializationPlugin = { id = "org.jetbrains.kotlin.plugin.serialization", version = "kotlin_version" }
 apollographqlPlugin = { id = "com.apollographql.apollo3", version.ref = "apollographql_version" }
 ktorPlugin = { id = "io.ktor.plugin", version.ref = "ktor_version" }

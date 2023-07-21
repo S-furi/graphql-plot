@@ -1,4 +1,4 @@
-package me.stefanofuri.application.server
+package gql.plt.server.components
 
 import com.expediagroup.graphql.dataloader.KotlinDataLoaderRegistryFactory
 import com.expediagroup.graphql.generator.hooks.FlowSubscriptionSchemaGeneratorHooks
@@ -15,8 +15,8 @@ import io.ktor.server.application.install
 import io.ktor.server.plugins.cors.routing.CORS
 import io.ktor.server.routing.Routing
 import io.ktor.server.websocket.WebSockets
-import me.stefanofuri.application.server.schema.queries.TestQuery
-import me.stefanofuri.application.server.schema.subscriptions.PointSubscription
+import gql.plt.server.components.schema.queries.TestQuery
+import gql.plt.server.components.schema.subscriptions.PointSubscription
 
 fun Application.graphQLModule() {
     install(WebSockets) {
@@ -30,7 +30,7 @@ fun Application.graphQLModule() {
 
     install(GraphQL) {
         schema {
-            packages = listOf("me.stefanofuri.application.server")
+            packages = listOf("gql.plt.server")
             queries = listOf(TestQuery())
             mutations = emptyList()
             subscriptions = listOf(PointSubscription())
