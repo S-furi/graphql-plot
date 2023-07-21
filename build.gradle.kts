@@ -30,7 +30,10 @@ kotlin {
                 implementation(libs.letsplot.js)
                 implementation(libs.kotlin.coroutines.core)
             }
+        }
 
+        val jvmMain by getting {
+            kotlin.srcDir("server/src")
         }
     }
 }
