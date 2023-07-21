@@ -16,6 +16,8 @@ import org.jetbrains.letsPlot.geom.geomPoint
 import org.jetbrains.letsPlot.geom.geomSmooth
 import org.jetbrains.letsPlot.letsPlot
 
+private val apolloClient = DefaultClient.Builder().serverUrl().addSubscriptionModule().build()
+
 fun main() {
     window.onload = { createContext() }
 }
@@ -54,7 +56,4 @@ fun getPlot(data: Map<String, Any>, xx: String = "x", yy: String = "y") =
             y = yy
         } + geomPoint(color = "red", size = 3.0)
 
-fun getData(): Flow<ApolloResponse<PointsSubscription.Data>> {
-    val apolloClient = DefaultClient.Builder().serverUrl().addSubscriptionModule().build()
-    return apolloClient.subscription(PointsSubscription(Optional.present(10))).toFlow()
-}
+fun getData() = apolloClient.subscription(PointsSubscription(Optional.present(10))).toFlow()
