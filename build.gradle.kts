@@ -10,17 +10,21 @@ repositories {
 }
 
 kotlin {
+    jvm {
+        jvmToolchain(17)
+        withJava()
+        testRuns["test"].executionTask.configure {
+            useJUnitPlatform()
+        }
+    }
+
+    js(IR) {
+        binaries.executable()
+        browser {
+        }
+    }
+
     sourceSets {
-        jvm() {
-
-        }
-
-        js(IR) {
-            binaries.executable()
-            browser {
-            }
-        }
-
         val jsMain by getting {
             kotlin.srcDir("js-app/src")
 

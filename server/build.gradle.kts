@@ -15,9 +15,7 @@ repositories {
 
 kotlin {
     jvm {
-        compilations.all {
-            kotlinOptions.jvmTarget = "17"
-        }
+        jvmToolchain(17)
         withJava()
         testRuns["test"].executionTask.configure {
             useJUnitPlatform()
@@ -43,3 +41,9 @@ kotlin {
         }
     }
 }
+
+//graphql {
+//    schema {
+//        packages = listOf("gql.plt.server.components.GraphQLModuleKt.graphQLModule")
+//    }
+//}
