@@ -1,6 +1,12 @@
 # graphql-plot
 A Kotlin GraphQL Client/Server architecture using Lets-Plot inside a Kotlin Multiplatform (JS) environment.
 
+---
+
+This version is not developed anymore in favor of a [Kotlin Multiplatform](https://github.com/S-furi/kmm-plot-gql.git)
+version.
+
+---
 ## Architecture
 The GraphQL server makes use of [GraphQL Kotlin](https://github.com/ExpediaGroup/graphql-kotlin),
 which makes possible to define the GraphQL schema dynamically when building the project.
